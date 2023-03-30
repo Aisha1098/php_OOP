@@ -26,6 +26,6 @@ class Cart{
         return $totalprice;
     }
     public function clear(){
-        $this->products = [];
+        $this->products = array();
     }
 }
