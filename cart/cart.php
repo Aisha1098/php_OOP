@@ -16,14 +16,8 @@ class Cart{
             }
         }
     }
-    public function totalPrice(){
-        $totalprice = 0;
-        if(! empty($this->products)){
-            foreach($this->products as $key => $p){
-                $totalprice += $p->getPrice();
-            }
-        }
-        return $totalprice;
+    public function totalPrice($price='price'){
+        return array_sum(array_map(fn($product) => $product->$price, $this->items));
     }
     public function clear(){
         $this->products = array();
