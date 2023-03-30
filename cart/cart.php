@@ -8,6 +8,7 @@ class Cart{
     public function add(Product $product){
         $this->products[] = $product;
     }
+    
     public function remove(Product $product){
         foreach($this->products as $key => $p){
             if($p->getId() === $product->getId()){
@@ -16,9 +17,17 @@ class Cart{
             }
         }
     }
-    public function totalPrice($price='price'){
-        return array_sum(array_column($this->products, $price));
+    
+    public function totalPrice(){
+        $totalprice = 0;
+        if(! empty($this->products)){
+            foreach($this->products as $key => $p){
+                $totalprice += $p->getPrice();
+            }
+        }
+        return $totalprice;
     }
+    
     public function clear(){
         $this->products = array();
     }
