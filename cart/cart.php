@@ -17,7 +17,7 @@ class Cart{
         }
     }
     public function totalPrice($price='price'){
-        return array_sum(array_map(fn($product) => $product->$price, $this->items));
+        return array_sum(array_column($this->products, $price));
     }
     public function clear(){
         $this->products = array();
